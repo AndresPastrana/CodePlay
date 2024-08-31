@@ -1,90 +1,72 @@
-import * as monaco from 'monaco-editor/'
-import HTMLWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
-import CSSWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
-window.MonacoEnvironment = {
-  getWorker (_, label) {
-    if (label === 'html') {
-      return new HTMLWorker()
-    }
-    if (label === 'css') {
-      return new CSSWorker()
-    }
-  }
-}
-const $ = (selector) => document.querySelector(selector)
+import * as monaco from "monaco-editor";
+import { $ } from "./utils/selector";
+import { createDocHTML } from "./utils/createHTMLDoc";
+import { configEditor } from "./utils/configEditor";
 
-const htlmEl = $('#html')
-const cssEl = $('#css')
-const jsEl = $('#js')
+// Set theme....
+configEditor(monaco.editor);
 
+//Editors DOM elements
+const htlmEl = $("#html");
+const cssEl = $("#css");
+const jsEl = $("#js");
+
+// Object to interact with each editor
 const htmlEditor = monaco.editor.create(htlmEl, {
-  value: '',
-  language: 'html'
-})
+  language: "html",
+  value: "",
+  autoClosingDelete: true,
+});
 
 const cssEditor = monaco.editor.create(cssEl, {
-  value: '',
-  language: 'css'
+  language: "css",
+  value: "",
+  "semanticHighlighting.enabled": true,
 
-})
+  fontFamily: "monospace",
+});
 
+const jsEditor = monaco.editor.create(jsEl, {
+  language: "typescript",
+  value: "",
+});
+
+// Ge the current values of each editor
 const getEditorValues = () => {
   return {
     html: htmlEditor.getValue(),
     css: cssEditor.getValue(),
-    js: ''
-  }
-}
-function init () {
-  const [html, css, js = null] = window.location.pathname.split('%7C')
-  console.log(css)
-  htmlEditor.setValue(window.atob(html.slice(1)))
-  cssEditor.setValue(window.atob(css))
+    js: jsEditor.getValue(),
+  };
+};
 
-  // jsEl.value = window.atob(js)
-  updatePreview()
-}
-
-const createDocHTML = (html = '', css = '', js = '') => {
-  return `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Document</title>
-    </head>
-     <style>
-      ${css}
-     </style>
-    <body>
-       ${html}
-       <script>
-     ${js}
-    </script>
-    </body>
-    
-    </html>`
-}
-
-// eslint-disable-next-line no-unused-vars
+// Update the ifarme
 const updatePreview = () => {
-  const { html, css, js } = getEditorValues()
-  const htmlDoc = createDocHTML(html, css, js)
-  const iframePreview = $('#preview')
-  iframePreview.setAttribute('srcdoc', htmlDoc)
-  updateUrl()
-}
+  const { html, css, js } = getEditorValues();
+  const htmlDoc = createDocHTML(html, css, js);
+  const iframePreview = $("#preview");
+  iframePreview.setAttribute("srcdoc", htmlDoc);
+  updateUrl();
+};
 
+// Update the browser url passing the generated doc as an encoded string
 const updateUrl = () => {
-  const { html, css, js } = getEditorValues()
+  const { html, css, js } = getEditorValues();
   const encodedPage = `${window.btoa(html)}|${window.btoa(css)}|${window.btoa(
     js
-  )}`
-  window.history.replaceState(null, null, encodedPage)
+  )}`;
+  window.history.replaceState(null, null, encodedPage);
+};
+function init() {
+  const [html, css, js] = window.location.pathname.split("%7C");
+
+  htmlEditor.setValue(window.atob(html.slice(1)));
+  cssEditor.setValue(window.atob(css));
+  jsEditor.setValue(window.atob(js));
+  updatePreview();
 }
 
-htmlEditor.onDidChangeModelContent(updatePreview)
-cssEditor.onDidChangeModelContent(updatePreview)
-document.addEventListener('DOMContentLoaded', init)
+htmlEditor.onDidChangeModelContent(updatePreview);
+cssEditor.onDidChangeModelContent(updatePreview);
+jsEditor.onDidChangeModelContent(updatePreview);
+document.addEventListener("DOMContentLoaded", init);

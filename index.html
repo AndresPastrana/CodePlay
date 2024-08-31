@@ -12,9 +12,11 @@
     <div id="app">
       <!--  -->
       <div class="preview_container">
+        <!-- Iframe to preview the content -->
         <iframe id="preview" frameborder="0"></iframe>
       </div>
       <div class="panels">
+        <!-- HTML Editor -->
         <section class="panel">
           <div class="menu">
             <span>
@@ -41,6 +43,7 @@
             <div id="html"></div>
           </div>
         </section>
+        <!-- CSS editor -->
         <section class="panel">
           <div class="menu">
             <span>
@@ -67,6 +70,7 @@
             <div id="css"></div>
           </div>
         </section>
+        <!-- JS Editor -->
         <section class="panel">
           <div class="menu">
             <span>
@@ -89,6 +93,8 @@
         </section>
       </div>
     </div>
-    <script type="module" src="src/main.js"></script>
+    <script type="module" defer src="src/loadworkers.js"></script>
+
+    <script type="module" defer src="src/main.js"></script>
   </body>
 </html>
