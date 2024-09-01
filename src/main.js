@@ -2,6 +2,8 @@ import * as monaco from "monaco-editor";
 import { $ } from "./utils/selector";
 import { createDocHTML } from "./utils/createHTMLDoc";
 import { configEditor } from "./utils/configEditor";
+import { welcomeStringHtml } from "./template/welcome";
+import { welcomeStyles } from "./template/styles";
 
 // Set theme....
 configEditor(monaco.editor);
@@ -60,8 +62,8 @@ const updateUrl = () => {
 function init() {
   const [html, css, js] = window.location.pathname.split("%7C");
 
-  htmlEditor.setValue(window.atob(html.slice(1)));
-  cssEditor.setValue(window.atob(css));
+  htmlEditor.setValue(window.atob(html.slice(1)) || welcomeStringHtml);
+  cssEditor.setValue(window.atob(css) || welcomeStyles);
   jsEditor.setValue(window.atob(js));
   updatePreview();
 }

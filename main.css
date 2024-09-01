@@ -22,6 +22,7 @@ body {
     min-width: 320px;
     min-height: 100vh;
     box-sizing: border-box;
+
 }
 
 h1 {
@@ -106,6 +107,6 @@ h1 {
 
 
 .preview_container {
-    flex-grow: 3;
-    background-color: white;
+    flex-grow: 1;
+
 }
