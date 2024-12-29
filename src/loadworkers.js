@@ -17,7 +17,7 @@ window.MonacoEnvironment = {
       case "javascript":
         return new JSWorker();
       default:
-        return new Worker(
+        return new window.Worker(
           new URL(
             "monaco-editor/esm/vs/editor/editor.worker.js",
             import.meta.url
@@ -25,5 +25,5 @@ window.MonacoEnvironment = {
           { type: "module" }
         );
     }
-  },
+  }
 };

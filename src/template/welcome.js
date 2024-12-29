@@ -1,8 +1,8 @@
 export const welcomeStringHtml = ` <div class="editor-wrapper">
 <header class="editor-header">
-    <h1>💻 Live Code Editor</h1>
+    <h1> Live Code Editor</h1>
     <div class="theme-toggle">
-        <button id="toggleTheme" class="theme-btn">🌙</button>
+        <button id="toggleTheme" class="theme-btn">Toogle</button>
     </div>
 </header>
 <div class="editor-container">

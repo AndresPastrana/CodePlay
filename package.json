@@ -13,7 +13,11 @@
     "vite": "^4.4.5"
   },
   "eslintConfig": {
-    "extends": "./node_modules/standard/eslintrc.json"
+    "extends": "./node_modules/standard/eslintrc.json",
+    "rules": {
+      "quotes": "off",
+      "semi": "off"
+    }
   },
   "dependencies": {
     "monaco-editor": "0.41.0"

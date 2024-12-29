@@ -1,23 +1,24 @@
-export function configEditor(editor) {
+export function configEditor (editor) {
   editor.defineTheme("default", {
     base: "vs-dark",
     inherit: true,
+
     rules: [
       {
         token: "identifier",
-        foreground: "9CDCFE",
+        foreground: "9CDCFE"
       },
       {
         token: "identifier.function",
-        foreground: "DCDCAA",
+        foreground: "DCDCAA"
       },
       {
         token: "type",
-        foreground: "1AAFB0",
-      },
+        foreground: "1AAFB0"
+      }
     ],
 
-    colors: {},
+    colors: {}
   });
   editor.setTheme("default");
 }
