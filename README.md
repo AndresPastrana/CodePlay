@@ -17,13 +17,13 @@ Follow these steps to set up the project locally:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/AndresPastrana/LiveCode.git
+git clone https://github.com/AndresPastrana/CodePlay.git
 ```
 
 ### 2. Navigate to the project directory
 
 ```bash
-cd LiveCode
+cd CodePlay
 ```
 
 ### 3. Install dependencies
