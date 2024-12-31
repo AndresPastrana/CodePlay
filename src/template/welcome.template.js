@@ -1,7 +1,7 @@
 export const welcomeStringHtml = `
 <div class="welcome-page">
   <header class="welcome-header">
-    <h1>Welcome to <span class="brand">LiveCode</span></h1>
+    <h1>Welcome to <span class="brand">Code Play</span></h1>
     <p>Your interactive live code editor for learning, building, and exploring.</p>
   </header>
   <main class="welcome-content">

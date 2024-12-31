@@ -1,6 +1,6 @@
 import * as monaco from "monaco-editor";
 import { $ } from "./utils/selector";
-import { configEditor } from "./utils/config.editor";
+import { configEditor } from "./config/editor.config";
 
 // Editors DOM elements
 const htlmEl = $("#html");

@@ -1,5 +1,5 @@
 import { cssEditor, htmlEditor, jsEditor } from "./editors";
-import { createDocHTML } from "./utils/createHTMLDoc"
+import { generateWebPage } from "./utils/generate-webpage";
 import { $ } from "./utils/selector";
 const getEditorValues = () => {
   return {
@@ -12,7 +12,7 @@ const getEditorValues = () => {
 // Update the iframe
 export const updatePreview = () => {
   const { html, css, js } = getEditorValues();
-  const htmlDoc = createDocHTML(html, css, js);
+  const htmlDoc = generateWebPage(html, css, js);
   const iframePreview = $("#preview");
   iframePreview.setAttribute("srcdoc", htmlDoc);
   updateUrl();
